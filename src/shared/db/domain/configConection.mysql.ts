@@ -4,8 +4,8 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const configConnection: ConnectionOptions = {
-  host: process.env.HOST_DB,
-  user: process.env.USER_DB,
-  password: process.env.PASSWORD,
-  database: process.env.DATABASE,
+  host: process.env.DB_HOST,
+  user: process.env.DB_USERNAME,
+  password: process.env.DB_PASSWORD,
+  database: process.env.DB_DATABASE,
 };

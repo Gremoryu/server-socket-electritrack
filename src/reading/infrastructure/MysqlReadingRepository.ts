@@ -4,11 +4,17 @@ import { Reading } from "../domain/Reading";
 
 export class MysqlReadingRepository implements ReadingRepository {
     async save(reading: Reading): Promise<Reading | null> {
-        const [result]: any = db.query(
-            "INSERT INTO readings (power_usage, room_id) VALUES (?, ?)",
-            [reading.power_usage, reading.room_id]
-        );
-        return result;
+
+        try {
+            const [result]: any = await db.query(
+                "INSERT INTO readings (power_usage, room_id) VALUES (?, ?)",
+                [reading.energy, reading.room_id]
+            );
+            return result;
+        } catch (error) {
+            console.log(error);
+            return null;
+        }
     }
 
     async findAll(): Promise<Reading[]> {

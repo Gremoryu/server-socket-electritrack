@@ -1,8 +1,7 @@
 import { Socket, io } from "socket.io-client";
 import { EventsSocket } from "../../domain/entities/event.types";
 import { SocketRepository } from "../../domain/repositories/socketRepository";
-import { QueueContent } from "../../../broker/domain/entities";
-
+import { Reading } from "../../../../reading/domain/Reading";
 export class SocketIOPort implements SocketRepository {
   constructor(private readonly url: string) {}
   async connect() {
@@ -15,7 +14,7 @@ export class SocketIOPort implements SocketRepository {
       }
     });
   }
-  async sendData(eventEmit: EventsSocket, data: QueueContent) {
+  async sendData(eventEmit: EventsSocket, data: Reading) {
     try {
       const socket = await this.connect();
       console.log("data to socket:")
