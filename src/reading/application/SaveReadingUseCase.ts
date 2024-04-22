@@ -14,6 +14,7 @@ export class SaveReadingUseCase {
             const socketRepository = new SocketIOPort(url);
             await socketRepository.connect();
             await socketRepository.sendData(EventsSocket.SEND_DATA, reading);
+            console.log(reading);
             const metrics = this.readingRepository.save(reading);
             return metrics;
         } catch (error) {
